@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreador de Apostas</title>
+  <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+</script>
+
+</head>
+<body>
+  <h1>Acompanhamento de Apostas</h1>
+
+  <nav>
+    <button onclick="mostrarAba('registro')">Registrar Aposta</button>
+    <button onclick="mostrarAba('historico')">Histórico</button>
+  </nav>
+
+  <div id="registro" class="aba ativa">
+    <label>Nome do time:</label>
+    <input type="text" id="time" placeholder="Ex: Flamengo"><br>
+
+    <label>Valor apostado:</label>
+    <input type="number" id="aposta" placeholder="Ex: 10"><br>
+
+    <label>Odd:</label>
+    <input type="number" id="odd" placeholder="Ex: 3.10"><br>
+
+    <label>Resultado:</label>
+    <select id="resultado">
+      <option value="espera">Esperando</option>
+      <option value="green">Green</option>
+      <option value="red">Red</option>
+    </select><br>
+
+    <label>Valor retornado (opcional):</label>
+    <input type="number" id="retornoManual" placeholder="Ex: 31"><br>
+
+    <button onclick="adicionar()">Adicionar Aposta</button>
+
+    <h3>Banca atual: R$<span id="banca">100</span></h3>
+  </div>
+
+  <div id="historico" class="aba">
+    <h2>Histórico de Apostas</h2>
+    <ul id="lista-apostas"></ul>
+    <br>
+    <button onclick="mostrarAba('registro')">Voltar ao Início</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
